@@ -19,6 +19,8 @@ angular.module('angular-send-feedback').directive('angularFeedback', [ function(
 
                     var settings = $.extend({
                             ajaxURL:                '',
+                            azureKey:               '',
+                            azureTable:             '',
                             postBrowserInfo:        true,
                             postHTML:               true,
                             postURL:                true,
@@ -523,17 +525,18 @@ angular.module('angular-send-feedback').directive('angularFeedback', [ function(
                                         post.img = img;
                                         post.note = $('#feedback-note').val();
                                         var data = {feedback: JSON.stringify(post)};
-                                        $.ajax({
-                                            url: settings.ajaxURL,
-                                            dataType: 'json',
-                                            type: 'POST',
-                                            data: data,
-                                            success: function() {
-                                                $('#feedback-module').append(settings.tpl.submitSuccess);
-                                            },
-                                            error: function(){
-                                                $('#feedback-module').append(settings.tpl.submitError);
-                                            }
+                                        
+                                        var client = new WindowsAzure.MobileServiceClient(
+                                            settings.ajaxURL,
+                                            settings.azureKey
+                                        );
+                                        
+                                        var table = client.getTable(azureTable);
+                                        
+                                        table.insert(data).then(function (data) {
+                                            $('#feedback-module').append(settings.tpl.submitSuccess);
+                                        }, function (err) {
+                                             $('#feedback-module').append(settings.tpl.submitError);
                                         });
                                     }
                                     else {
