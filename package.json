@@ -1,14 +1,14 @@
 {
   "name": "angular-send-feedback",
-  "description": "Angular feedback directive similar to Google Feedback",
-  "version": "1.0.2",
+  "description": "Angular feedback directive similar to Google Feedback using Azure Mobile Services",
+  "version": "1.0.3",
   "filename": "angular-send-feedback.min.js",
   "main": "./dist/angular-send-feedback.min.js",
-  "homepage": "https://github.com/jacobscarter/angular-feedback",
-  "author": "Jacob Carter <jacob@ieksolutions.com>",
+  "homepage": "https://github.com/appieschot/angular-feedback",
+  "author": "Albert-Jan Schot <appie@digiwijs.nl>",
   "repository": {
     "type": "git",
-    "url": "git://github.com/jacobscarter/angular-feedback.git"
+    "url": "git://github.com/appieschot/angular-feedback.git"
   },
   "keywords": [
     "angular",
@@ -18,8 +18,8 @@
   ],
   "maintainers": [
     {
-      "name": "Jacob Carter",
-      "website": "http://strangemilk.com/"
+      "name": "Albert-Jan Schot",
+      "website": "http://www.sharepointappie.nl/"
     }
   ],
   "dependencies": {},

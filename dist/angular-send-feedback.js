@@ -1,7 +1,7 @@
 /**
- * Angular feedback directive similar to Google Feedback
- * @version v1.0.1 - 2015-02-03 * @link https://github.com/jacobscarter/angular-feedback
- * @author Jacob Carter <jacob@ieksolutions.com>
+ * Angular feedback directive similar to Google Feedback using Azure Mobile Services
+ * @version v1.0.3 - 2015-10-26 * @link https://github.com/appieschot/angular-feedback
+ * @author Albert-Jan Schot <appie@digiwijs.nl>
  * @license MIT License, http://www.opensource.org/licenses/MIT
  */
 angular.module('templates-angularsendfeedback', ['angularsendfeedback.html']);
@@ -34,6 +34,8 @@ angular.module('angular-send-feedback').directive('angularFeedback', [ function(
 
                     var settings = $.extend({
                             ajaxURL:                '',
+                            azureKey:               '',
+                            azureTable:             '',
                             postBrowserInfo:        true,
                             postHTML:               true,
                             postURL:                true,
@@ -538,17 +540,18 @@ angular.module('angular-send-feedback').directive('angularFeedback', [ function(
                                         post.img = img;
                                         post.note = $('#feedback-note').val();
                                         var data = {feedback: JSON.stringify(post)};
-                                        $.ajax({
-                                            url: settings.ajaxURL,
-                                            dataType: 'json',
-                                            type: 'POST',
-                                            data: data,
-                                            success: function() {
-                                                $('#feedback-module').append(settings.tpl.submitSuccess);
-                                            },
-                                            error: function(){
-                                                $('#feedback-module').append(settings.tpl.submitError);
-                                            }
+                                        
+                                        var client = new WindowsAzure.MobileServiceClient(
+                                            settings.ajaxURL,
+                                            settings.azureKey
+                                        );
+                                        
+                                        var table = client.getTable(settings.azureTable);
+                                        
+                                        table.insert(data).then(function (data) {
+                                            $('#feedback-module').append(settings.tpl.submitSuccess);
+                                        }, function (err) {
+                                             $('#feedback-module').append(settings.tpl.submitError);
                                         });
                                     }
                                     else {

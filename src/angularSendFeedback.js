@@ -531,7 +531,7 @@ angular.module('angular-send-feedback').directive('angularFeedback', [ function(
                                             settings.azureKey
                                         );
                                         
-                                        var table = client.getTable(azureTable);
+                                        var table = client.getTable(settings.azureTable);
                                         
                                         table.insert(data).then(function (data) {
                                             $('#feedback-module').append(settings.tpl.submitSuccess);

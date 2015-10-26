@@ -1,21 +1,19 @@
 # angular-feedback
 
-Feedback directive similar to Google Feedback
+Feedback directive similar to Google Feedback with using Azure Mobile Services as storage
 
-This directive was built using [ivoviz's](http://github.com/ivoviz) feedback repo.
+This directive was built using [Jacob's Carter ](http://jacobscarter.github.io/angular-feedback/) feedback repo.
 
-## Demo
-
-[http://jacobscarter.github.io/angular-feedback/](http://jacobscarter.github.io/angular-feedback/)
 
 ## Install
 
-`bower install angular-send-feedback`
+`bower install https://github.com/appieschot/angular-feedback`
 
 ## Dependencies
 
 * jQuery
 * html2canvas
+* Azure Mobile Services
 
 ## Use
 
@@ -28,6 +26,10 @@ Add directive to your HTML:
 `<angular-feedback options="options"></angular-feedback>`
 
 The options attribute is connected to a `$scope` value in your controller, you can use this object to change/modify any of the options listed below.
+
+Add script references to your HTML:
+`<script src="lib/angular-send-feedback/dist/angular-send-feedback.js"></script>`
+`<script src="//ajax.aspnetcdn.com/ajax/mobileservices/MobileServices.Web-1.2.7.min.js"></script>`
 
 ## Post Data
 
@@ -44,6 +46,18 @@ The information from the client will be sent through ajax post request. The info
 ### ajaxURL (String)
 
 The URL where the plugin will post the screenshot and additional informations. (JSON datatype)
+
+`Default: ''`
+
+### azureKey (String)
+
+The key used to store data to Azure Mobile Services
+
+`Default: ''`
+
+### azureTable (String)
+
+The table name where the data should be stored
 
 `Default: ''`
 

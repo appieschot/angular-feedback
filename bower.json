@@ -1,11 +1,11 @@
 {
   "name": "angular-send-feedback",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "main": "./dist/angular-send-feedback.min.js",
-  "description": "Angular feedback directive similar to Google Feedback",
+  "description": "Angular feedback directive similar to Google Feedback using Azure Mobile Services",
   "repository": {
     "type": "git",
-    "url": "git://github.com/jacobscarter/angular-feedback.git"
+    "url": "git://appieschot/angular-feedback/angular-feedback.git"
   },
   "dependencies": {
     "angular": "*",
